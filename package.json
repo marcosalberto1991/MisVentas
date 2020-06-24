@@ -1,0 +1,48 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.19.0",
+        "bootstrap-sass": "^3.3.7",
+        "cross-env": "^5.1",
+        "jquery": "^3.4.1",
+        "laravel-mix": "^1.7.2",
+        "lodash": "^4.17.4",
+        "vue": "^2.6.10"
+    },
+    "dependencies": {
+        "ajv": "^6.0.0",
+        "bootstrap": "^4.3.1",
+        "bootstrap-icons": "^1.0.0-alpha3",
+        "bootstrap-vue": "^2.11.0",
+        "laravel-vue-pagination": "^2.3.1",
+        "node-sass": "^4.14.0",
+        "popper.js": "^1.16.1",
+        "toastr": "^2.1.4",
+        "v-mask": "^2.0.2",
+        "v-money": "^0.8.1",
+        "v-select2-component": "^0.3.9",
+        "vue-full-calendar": "^2.6.1",
+        "vue-jquery": "^1.0.6",
+        "vue-moment": "^4.0.0",
+        "vue-multiselect": "^2.1.6",
+        "vue-num-input": "^1.0.1",
+        "vue-numeric": "^2.3.0",
+        "vue-router": "^3.1.6",
+        "vue-select": "^3.1.0",
+        "vue-select2": "^0.2.6",
+        "vue-single-select": "^1.0.29",
+        "vue-toast-notification": "0.0.2",
+        "vue-toastr-2": "0.0.10",
+        "vue2-datepicker": "^2.13.3",
+        "vuejs-datepicker": "^1.6.2"
+    }
+}
