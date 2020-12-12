@@ -62,7 +62,7 @@ class ProductosController extends Controller
 				 $file2 = Input::file('imagen');
 				if(isset($file2)) {
 					$nombres = time() . str_random(5) . '.' . $file2->getClientOriginalExtension();
-					\Storage::disk('perfil')->put($nombres, \File::get($file2));
+					\Storage::disk('intervenir')->put($nombres, \File::get($file2));
 					$Productos->imagen = $nombres;
 				}
 				 $Productos->estados_id=$request->estados_id;
@@ -90,7 +90,7 @@ class ProductosController extends Controller
 				 $file2 = Input::file('imagen');
 				if(isset($file2)) {
 					$nombres = time() . str_random(5) . '.' . $file2->getClientOriginalExtension();
-					\Storage::disk('perfil')->put($nombres, \File::get($file2));
+					\Storage::disk('intervenir')->put($nombres, \File::get($file2));
 					$Productos->imagen = $nombres;
 				}
 				 $Productos->estados_id=$request->estados_id;

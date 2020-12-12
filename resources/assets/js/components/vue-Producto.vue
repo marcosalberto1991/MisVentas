@@ -21,21 +21,13 @@
                         <div class="row">
                             <div class="col-md-12 row">
                                 <input type="hidden" v-model="input_Producto_id">
-                                
-                                <div class="form-group col-md-4 col-sm-12">
-                                    <label for="exampleInputEmail1"><b>Codigo Producto</b></label>
-                                    <input type="text" v-model="input_codigo_producto" placeholder="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <b-alert show v-if="validacion.codigo_producto" variant="danger">{{validacion.codigo_producto[0]}}</b-alert>
 
-                                </div>
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Nombre de Proveedor</b></label>
                                     <input type="text" v-model="input_nombre_proveedor" placeholder="nombre_proveedor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <b-alert show v-if="validacion.nombre_proveedor" variant="danger">{{validacion.nombre_proveedor[0]}}</b-alert>
 
                                 </div>
-
-                                
 
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Nombre</b></label>
@@ -96,13 +88,14 @@
     -->
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="exampleInputEmail1"><b>precio_venta</b></label>
-                                    <money v-model="input_precio_venta" v-bind="money" class="form-control" ></money>
+
+                                    <input type="text" v-model="input_precio_venta" v-money="money" placeholder="precio_venta" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <b-alert show v-if="validacion.precio_venta" variant="danger">{{validacion.precio_venta[0]}}</b-alert>
                                 </div>
 
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="exampleInputEmail1"><b>precio_venta_2</b></label>
-                                    <money v-model="input_precio_venta_2" v-bind="money" class="form-control" ></money>
+                                    <input type="text" v-model="input_precio_venta_2" v-money="money" placeholder="precio_venta_2" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <b-alert show v-if="validacion.precio_venta_2" variant="danger">{{validacion.precio_venta_2[0]}}</b-alert>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-12">
@@ -330,7 +323,9 @@ import VueToastr2 from "vue-toastr-2";
 import "vue-toastr-2/dist/vue-toastr-2.min.css";
 window.toastr = require("toastr");
 Vue.use(VueToastr2);
-import {Money} from 'v-money'
+import {
+    Money
+} from "v-money";
 
 export default {
     components: {
@@ -446,7 +441,6 @@ export default {
             input_ganacia: [],
             input_proveedor_id: [],
             input_stock: [],
-            input_codigo_producto:[],
             input_cantidad_disponible: [],
             input_created_at: [],
             input_updated_at: [],
@@ -528,7 +522,6 @@ export default {
             const data = {
                 id: this.input_Producto_id,
                 id: this.input_id,
-                codigo_producto: this.input_codigo_producto,
                 nombre_proveedor: this.input_nombre_proveedor,
                 nombre: this.input_nombre,
                 imagen: this.input_imagen,
@@ -551,7 +544,6 @@ export default {
             };
             const formData = new FormData();
             formData.append("nombre_proveedor", this.input_nombre_proveedor);
-            formData.append("codigo_producto", this.input_codigo_producto);
             formData.append("nombre", this.input_nombre);
             formData.append("imagen", this.input_imagen);
             formData.append("precio_caja", this.input_precio_caja);
@@ -656,7 +648,6 @@ export default {
                     this.input_created_at = data.created_at;
                     this.input_updated_at = data.updated_at;
                     this.auditoria_data = data.auditoria;
-                    this.input_codigo_producto = data.codigo_producto;
 
                     //this.input_user_id = data.id;
                     //this.input_name = data.name;
@@ -677,7 +668,6 @@ export default {
             this.input_precio_venta_2 = '';
             this.input_ganacia = '';
             this.input_proveedor_id = '';
-            this.input_codigo_producto = '';
             this.input_created_at = '';
             this.input_updated_at = '';
 

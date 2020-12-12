@@ -1,4 +1,4 @@
-@extends('layouts.App_admin_ui')
+@extends('layouts.app_admin_ui')
 @section('content')
    
         <vue-producto></vue-producto>

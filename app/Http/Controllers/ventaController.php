@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Http\Resources\punto as puntoResource;
 use App\punto;
+use DB;
+
 use App\VentasModel;
 use App\Ventas_has_productoModel;
 use Illuminate\Http\Request;
@@ -26,6 +28,12 @@ class ventaController extends Controller
                 $suma += $venta['cantidad'] * $venta['precio'];
             }
             $ventas[$key]['total_ventas'] = $suma;
+            
+            $ventas_has_producto = Ventas_has_productoModel::with('producto_id_pk')->where('ventas_id', $value->id)
+            ->select(DB::raw("producto_id,sum(cantidad) as cantidad_grupa"))
+            ->groupby('producto_id')
+            ->get();
+            $ventas[$key]['grupo_venta'] = $ventas_has_producto;
         }
         return response()->json($ventas);
     }

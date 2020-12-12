@@ -116,10 +116,13 @@
       <template v-slot:cell(Acciones)='data'>
 
           <b-button-group>
-            <b-button v-if="$can('Ventas Eliminar')"  v-b-modal.moda-registro size='sm' variant='warning' @click='editar_registro(data.item.id)' type='button' class='btn-sm btn btn-wangir mr-1' data-toggle='button' aria-pressed='false' style='margin: 0px;'>Editar
+            <b-button v-if="$can('Ventas Eliminar')"  v-b-modal.moda-registro size='sm' variant='warning' @click='editar_registro(data.item.id)' type='button' class='btn-sm btn btn-wangir mr-1' data-toggle='button' aria-pressed='false' style='margin: 0px;'>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
             </b-button>
             <b-button v-if="$can('Ventas Eliminar')"  v-b-modal.moda-eliminar @click='eliminar_registro(data.item.id)'
-                type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 0px;'>Eliminar
+                type='button' class='btn-sm btn btn-danger mr-1' size='sm' data-toggle='button' aria-pressed='false' style='margin-bottom: 5px; margin: 0px;'><i class="fa fa-trash-o" aria-hidden="true"></i>
+
             </b-button>
             <!--  
             <a v-bind:href=" data.item.id+'/Sucursale'"  class='btn-sm btn btn-success mr-1' size='sm'  style='margin-bottom: 5px; margin: 5px;'>Surcusales </a>
@@ -136,7 +139,7 @@
                 
         </template>
         <template v-slot:row-details="row">
-          <table class="table b-table table-striped">
+          <table class="table b-table table-striped producto-t ">
             <thead>
                 <tr>
                   <th scope="col">Producto</th>
@@ -484,6 +487,11 @@ export default {
 
 
 </script>
+<style>
+.producto-t{
+    background-color: #dcdcdc!important;
+}
+</style>
 
 
 

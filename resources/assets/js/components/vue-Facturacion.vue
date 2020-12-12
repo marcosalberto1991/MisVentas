@@ -20,7 +20,7 @@
 
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Fecha</b></label>
-                                    <input type="text" v-model="input_fecha" placeholder="fecha" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <b-form-datepicker id="example-datepicker" v-model="input_fecha" class="mb-2"></b-form-datepicker>
                                     <b-alert show v-if="validacion.fecha" variant="danger">{{validacion.fecha[0]}}</b-alert>
 
                                 </div>

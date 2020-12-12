@@ -38,32 +38,34 @@ Vue.component('vue-facturacion', require('./components/vue-Facturacion.vue'));
 Vue.component('vue-campo', require('./components/vue-Campo.vue'));
 
 Vue.component('vue-facturacion_producto', require('./components/vue-Facturacion_Producto.vue'));
+
+Vue.component('listaproducto-vue', require('./components/ListaProducto-vue.vue'));
+
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-import MyThoughtsComponent from './components/MyThoughtsComponent.vue';
+import listaMesa from './components/listaMesa.vue';
 import Producto from './components/vue-Producto.vue';
 import Ventas from './components/vue-Ventas.vue';
 import Facturacion from './components/vue-Facturacion.vue';
 import v404 from './components/vue-404.vue';
 
-const Foo = { template: '<div>Foo</div>' }
-const Bar = { template: '<div>bar</div>' }
+import ListaProducto from './components/ListaProducto-vue.vue';
+import ListaProductoForm from './components/ListaProductoForm-vue.vue';
 
-var url = '/MisVentas/public/';
-var url = '/';
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'history', 
     routes: [
-            { path: url + 'Lista_Mesa', component: MyThoughtsComponent, name: 'MyThoughtsComponent' },
-            { path: url + 'Producto', component: Producto, name: 'Producto' },
-            { path: url + 'Ventas', component: Ventas, name: 'Ventas' },
-            { path: url + 'Facturacion', component: Facturacion, name: 'Facturacion' },
-
-
-
-            { path: 'Foo', component: Foo },
-            { path: 'Bar', component: Bar }
+            { path: '/Lista_Mesa', component: listaMesa, name: 'listaMesa' },
+            { path: '/Producto', component: Producto, name: 'Producto' },
+            { path: '/Ventas', component: Ventas, name: 'Ventas' }, 
+            { path: '/Facturacion', component: Facturacion, name: 'Facturacion' },
+            { path: '/ListaProducto', component: ListaProducto, name: 'listaproducto' },
+            { path: '/ListaProducto/:id/edit', component: ListaProductoForm, name: 'listaproductoform' },
+            { path: '/ListaProducto/create', component: ListaProductoForm, name: 'listaproductoformadd' }, 
+         //   { path: 'Foo', component: Foo },
+           // { path: 'Bar', component: Bar }
         ] // short for `routes: routes`
 })
 

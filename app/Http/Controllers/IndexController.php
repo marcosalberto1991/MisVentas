@@ -60,13 +60,7 @@ class IndexController extends Controller {
         
     }
     public function index() {
-        $Productos=ProductosModel::with('entrada_all','productos_has_venta_all')->where('estados_id',1)->get();
-        
-        
-        return view('Index.lista_producto', [
-            'productos' => $Productos,
-            //'datosdispositivo' => $datosdispositivo,
-            //'dispositivo' => $dispositivo,
+        return view('inicio', [
         ]);
     }
 

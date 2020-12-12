@@ -1,4 +1,4 @@
-@extends('layouts.app_monster')
+@extends('layouts.app_admin_ui')
 
 @section('title', '| Edit Permission')
 

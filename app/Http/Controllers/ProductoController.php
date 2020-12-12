@@ -134,8 +134,6 @@ class ProductoController extends Controller {
 		$Producto->proveedor_id=$request->proveedor_id;
 		$Producto->stock=$request->stock;
 		$Producto->cantidad_disponible=$request->cantidad_disponible;
-		$Producto->codigo_producto=$request->codigo_producto;
-
 		
 		
 		$Producto->save();
@@ -199,7 +197,6 @@ class ProductoController extends Controller {
 			$Producto->stock=$request->stock;
 			$Producto->cantidad_disponible=$request->cantidad_disponible;
 			$Producto->proveedor_id=$request->proveedor_id;
-			$Producto->codigo_producto=$request->codigo_producto;
 			$Producto->created_at=$request->created_at;
 			$Producto->updated_at=$request->updated_at;
 

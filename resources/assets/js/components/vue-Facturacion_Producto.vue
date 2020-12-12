@@ -17,21 +17,7 @@
                         <div class="row">
                             <div class="col-md-12 row">
                                 <input type="hidden" v-model="input_Facturacion_Producto_id">
-                                <!--
-                                <div class="form-group col-md-4 col-sm-12">
-                                    <label for="exampleInputEmail1"><b>id</b></label>
-                                    <input type="text" v-model="input_id" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
 
-                                </div>
-                                
-                                <div class="form-group col-md-4 col-sm-12">
-                                    <label for="exampleInputEmail1">facturacion_id</label>
-                                    <Select2 v-model="input_facturacion_id" :options="data_foraneo_facturacion_id" :settings="{ settingOption: value, settingOption: value }" />
-                                    <small id="emailHelp" class="form-text text-muted"></small>
-                                    <b-alert show v-if="validacion.facturacion_id" variant="danger">{{validacion.facturacion_id[0]}}</b-alert>
-                                </div>
-                                -->
                                 <div class="form-group col-md-3 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Codigo producto</b></label>
                                     <input type="text" v-on:change="buscar_producto_descricion()" v-model="input_codigo_producto" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -39,14 +25,11 @@
                                 </div>
                                 <div class="form-group col-md-3 col-sm-12">
                                     <label for="exampleInputEmail1">Producto</label>
-                                    <Select2 v-model="input_producto_id" v-on:change="buscar_producto_descricion()" :options="data_foraneo_producto_id" 
-                                     />
+                                    <Select2 v-model="input_producto_id" v-on:change="buscar_producto_descricion()" :options="data_foraneo_producto_id" />
                                     <small id="emailHelp" class="form-text text-muted"></small>
                                     <b-alert show v-if="validacion.producto_id" variant="danger">{{validacion.producto_id[0]}}</b-alert>
                                 </div>
-                                
-                              
-                                
+
                                 <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Unidad de Medida</b></label>
                                     <input type="text" v-model="input_unidad_de_medida" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -67,48 +50,37 @@
                                     <input type="text" v-model="input_porcentaje_de_ganancia" v-on:change="calcular_producto()" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
                                 </div>
-                                
-                                
+
                             </div>
                             <div class="col-md-12 row">
-                              <div class="form-group col-md-2 col-sm-12">
+                                <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>cantidad</b></label>
                                     <input type="text" v-model="input_cantidad" v-on:change="calcular_producto()" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <b-alert show v-if="validacion.input_cantidad" variant="danger">{{validacion.input_cantidad[0]}}</b-alert>
-                              </div>
-                              <div class="form-group col-md-2 col-sm-12">
+                                </div>
+                                <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Valor Unitario sin iva</b></label>
-                                    <!--
-                                    <input type="text" v-model="input_valor_unitario_sin_iva" v-money="money" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    -->
-                                    <money v-model="input_valor_unitario_sin_iva" v-bind="money" v-on:change="calcular_producto()" class="form-control" ></money>
+                                    <money v-model="input_valor_unitario_sin_iva" v-bind="money" v-on:change="calcular_producto()" class="form-control"></money>
+                                    <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
+                                </div>
+                                <div class="form-group col-md-2 col-sm-12">
+                                    <label for="exampleInputEmail1"><b>Descuento</b></label>
+                                    <money v-model="input_descuento" v-bind="money" v-on:change="calcular_producto()" class="form-control"></money>
                                     <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
                                 </div>
                                 <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Valor Unitario con iva</b></label>
-                                    <money v-model="input_valor_unitario_con_iva" v-on:change="calcular_producto()" v-bind="money" class="form-control" ></money>
-                                    <!--
-                                    <input type="text" v-model="input_valor_unitario_con_iva" v-on:change="calcular_producto()" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    -->
+                                    <money v-model="input_valor_unitario_con_iva" v-on:change="calcular_producto()" v-bind="money" class="form-control"></money>
                                     <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
                                 </div>
-                                
                                 <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Valor de venta calculado</b></label>
-                                    <!--
-                                    <input type="text" v-model="input_Valor_de_venta_calculado" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    -->
-                                    <money v-model="input_Valor_de_venta_calculado" v-bind="money" class="form-control" ></money>
- 
+                                    <money v-model="input_Valor_de_venta_calculado" v-bind="money" class="form-control"></money>
                                     <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
                                 </div>
                                 <div class="form-group col-md-2 col-sm-12">
                                     <label for="exampleInputEmail1"><b>Valor de venta</b></label>
-                                    <!--
-                                    <input type="text" v-model="input_valor_de_venta" placeholder="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    -->
-                                    <money v-model="input_valor_de_venta" v-bind="money" class="form-control" ></money>
- 
+                                    <money v-model="input_valor_de_venta" v-bind="money" class="form-control"></money>
                                     <b-alert show v-if="validacion.id" variant="danger">{{validacion.id[0]}}</b-alert>
                                 </div>
 
@@ -172,7 +144,7 @@
                     <template v-slot:cell(valor_de_venta)='data'>
                         {{ formatPrice(data.item.valor_de_venta) }}
                     </template>
-                    
+
                     <template v-slot:head(Acciones)='scope'>
                         <div class='text-nowrap'>Acciones</div>
                     </template>
@@ -180,18 +152,17 @@
                         <div class='text-nowrap'>Acciones</div>
                     </template>
 
-                    
                 </b-table>
 
                 <div class='col-12'>
-                        <div class="row">
+                    <div class="row">
 
                         <h3>
                             {{ formatPrice(input_suma_total) }}
                         </h3>
-                        </div>
+                    </div>
                 </div>
-<!--
+                <!--
                 <div class='col-12'>
                     <form ref="form" v-on:submit.prevent="formulario()">
                         <div class="row">
@@ -244,7 +215,9 @@ import VueToastr2 from "vue-toastr-2";
 import "vue-toastr-2/dist/vue-toastr-2.min.css";
 window.toastr = require("toastr");
 Vue.use(VueToastr2);
-import {Money} from 'v-money'
+import {
+    Money
+} from 'v-money'
 
 export default {
     components: {
@@ -276,7 +249,6 @@ export default {
                 masked: false
             },
 
-
             fields: [{
                     key: "Acciones",
                     stickyColumn: true,
@@ -288,60 +260,64 @@ export default {
                     sortable: true
                 },
                 {
-                    label:'Codigo',
+                    label: 'Codigo',
                     key: 'codigo_producto',
                     sortable: true
                 },
                 {
-                    label:'Producto',
+                    label: 'Producto',
 
                     key: 'producto_id.nombre_proveedor',
                     sortable: true
                 },
                 {
-                    label:'Producto',
+                    label: 'Producto',
                     key: 'producto_id.nombre',
                     sortable: true
                 },
                 {
-                    label:'cantidad',
+                    label: 'cantidad',
                     key: 'cantidad',
                     sortable: true
                 },
                 {
-                    label:'cant Unit',
+                    label: 'cant Unit',
                     key: 'cantidad_por_unidad',
                     sortable: true
                 },
                 {
-                    label:'v unit S IVA',
+                    label: 'v unit S IVA',
                     key: 'valor_unitario_sin_iva',
                     sortable: true
                 },
                 {
-                    label:'Iva',
+                    label: 'Iva',
                     key: 'iva',
                     sortable: true
                 },
-                {   label:'Valor C IVA',
+                {
+                    label: 'Valor C IVA',
                     key: 'valor_unitario_con_iva',
                     sortable: true
+                },  {
+                    label: 'Descuento',
+                    key: 'descuento',
+                    sortable: true
                 },
+
+
                 {
-                    label:'precio calculado',
+                    label: 'precio calculado',
                     key: 'Valor_de_venta_calculado',
                     sortable: true
                 },
                 {
-                    label:'precio',
+                    label: 'precio',
                     key: 'valor_de_venta',
                     sortable: true
                 },
-                
 
             ],
-
-            
 
             input_Facturacion_Producto_id: [],
             data_foraneo_facturacion_id: [],
@@ -359,15 +335,15 @@ export default {
             input_porcentaje_de_ganancia: [],
             input_Valor_de_venta_calculado: [],
             input_valor_de_venta: [],
-            input_codigo_producto:'', 
+            input_codigo_producto: '',
             input_campo: [],
-
+            input_descuento:[],
             consulta_tabla: [],
             consulta_datos: [],
             errors: {},
             mensaje_formulario: "",
             page: 1,
-            input_suma_total:[],
+            input_suma_total: [],
 
         };
     },
@@ -386,7 +362,6 @@ export default {
                     this.input_campo = response.data.campo;
                     this.input_suma_total = response.data.suma_total;
 
-                    
                     //this.datas = response.data.data;
                     //this.items = response.data.data;
                     //this.consulta_tabla = response.data.data;
@@ -400,9 +375,9 @@ export default {
 
             });
         },
-        buscar_producto(){
+        buscar_producto() {
             axios.get(`Facturacion_Producto/buscar_producto/${this.input_codigo_producto}`).then(response => {
-               const data = response.data;
+                const data = response.data;
 
                 this.input_Facturacion_Producto_id = data.id
 
@@ -453,6 +428,8 @@ export default {
                 porcentaje_de_ganancia: this.input_porcentaje_de_ganancia,
                 Valor_de_venta_calculado: this.input_Valor_de_venta_calculado,
                 valor_de_venta: this.input_valor_de_venta,
+                descuento: this.input_descuento,
+                
                 //name: this.input_name,
                 //email: this.input_email
             };
@@ -514,48 +491,49 @@ export default {
         $can(permissionName) {
             return Permissions.indexOf(permissionName) !== -1;
         },
-        calcular_producto(){
+        calcular_producto() {
             console.info(this.valor_unitario_con_iva);
             console.info(this.porcentaje_de_ganancia);
             console.info(this.cantidad_por_unidad);
 
             //this.cantidad_por_unidad
 
-            this.input_Valor_de_venta_calculado=( (this.input_valor_unitario_con_iva * ((this.input_porcentaje_de_ganancia/100)+1) )/ this.input_cantidad_por_unidad)
-            console.info( (this.valor_unitario_con_iva * (this.porcentaje_de_ganancia/100) )/ this.cantidad_por_unidad) 
+            this.input_Valor_de_venta_calculado = ((this.input_valor_unitario_con_iva * ((this.input_porcentaje_de_ganancia / 100) + 1)) / this.input_cantidad_por_unidad)
+            console.info((this.valor_unitario_con_iva * (this.porcentaje_de_ganancia / 100)) / this.cantidad_por_unidad)
         },
-        buscar_producto_descricion(){
-             const data = {
+        buscar_producto_descricion() {
+            const data = {
                 codigo_producto: this.input_codigo_producto,
                 producto_id: this.input_producto_id,
-                }
+            }
 
-                axios.post(`Facturacion_Producto/buscar_producto_descricion`, data)
-                    .then(response => {
-                            const datos = response.data;
-                            if (response.data.id) {
-                                this.validacion = "";
-                                this.$toastr.success("Operacio exitosa", "Datos modificados");
-                                 this.input_cantidad= datos.cantidad
-                                this.input_unidad_de_medida=datos.unidad_de_medida
-                                this.input_cantidad_por_unidad=datos.cantidad_por_unidad
-                                this.input_valor_unitario_sin_iva=datos.valor_unitario_sin_iva
-                                this.input_iva=datos.iva
-                                this.input_valor_unitario_con_iva=datos.valor_unitario_con_iva
-                                this.input_porcentaje_de_ganancia=datos.porcentaje_de_ganancia
-                                this.input_Valor_de_venta_calculado=datos.Valor_de_venta_calculado
-                                this.input_valor_de_venta=datos.valor_de_venta
-                                //this.consulta(this.page);
-                                //this.formulario_Facturacion_Producto = false;
+            axios.post(`Facturacion_Producto/buscar_producto_descricion`, data)
+                .then(response => {
+                        const datos = response.data;
+                        if (response.data.id) {
+                            this.validacion = "";
+                            this.$toastr.success("Operacio exitosa", "Datos modificados");
+                            this.input_cantidad = datos.cantidad
+                            this.input_unidad_de_medida = datos.unidad_de_medida
+                            this.input_cantidad_por_unidad = datos.cantidad_por_unidad
+                            this.input_valor_unitario_sin_iva = datos.valor_unitario_sin_iva
+                            this.input_iva = datos.iva
+                            this.input_valor_unitario_con_iva = datos.valor_unitario_con_iva
+                            this.input_porcentaje_de_ganancia = datos.porcentaje_de_ganancia
+                            this.input_Valor_de_venta_calculado = datos.Valor_de_venta_calculado
+                            this.input_valor_de_venta = datos.valor_de_venta
+                            this.input_descuento = datos.descuento
+                            
+                            //this.consulta(this.page);
+                            //this.formulario_Facturacion_Producto = false;
 
-                            }
-                        },
-                        (err) => {
-                            console.log("Err", err);
-                            this.$toastr.warning(err, "Error en el servidor");
-                            this.$toastr.warning(err.message, "Error en el servidor");
-                });
-
+                        }
+                    },
+                    (err) => {
+                        console.log("Err", err);
+                        this.$toastr.warning(err, "Error en el servidor");
+                        this.$toastr.warning(err.message, "Error en el servidor");
+                    });
 
         },
         editar_registro(data_id) { //show 
@@ -583,6 +561,8 @@ export default {
                     this.input_Valor_de_venta_calculado = data.Valor_de_venta_calculado;
                     this.input_valor_de_venta = data.valor_de_venta;
                     this.input_codigo_producto = data.codigo_producto;
+                    this.input_descuento = data.descuento;
+
 
                     //this.input_user_id = data.id;
                     //this.input_name = data.name;
@@ -603,6 +583,7 @@ export default {
             this.input_porcentaje_de_ganancia = ''
             this.input_Valor_de_venta_calculado = ''
             this.input_valor_de_venta = ''
+            this.input_descuento=''
 
             this.validacion = "";
 

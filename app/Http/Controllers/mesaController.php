@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\punto;
+use App\ListaProductoModel;
 use App\VentasModel;
 use App\MesaModel;
 
@@ -63,10 +64,16 @@ class mesaController extends Controller
         $mesa = MesaModel::all();
         return $mesa;
     }
+    
     public function proveedores(){
         $Proveedor = ProveedorModel::select('id','nombre as text')->get();
         return $Proveedor;
     }
+    public function listaProducto(){
+        $ListaProducto = ListaProductoModel::with('producto_id_pk')->select('id','producto_id','producto_id as text')->orderBy('orden', 'DESC')->get();
+        return $ListaProducto;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

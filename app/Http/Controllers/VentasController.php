@@ -47,26 +47,30 @@ class VentasController extends Controller {
     if($consulta_data==""){
 	  $data = VentasModel::with('mesa_id','estado_id','ventas_has_producto_all_ventas.producto_id')
 	  ->orderBy('id', 'DESC')
-	  ->paginate(20)
-	  //->toarray()
-	  ;
+	  ->paginate(20);
 	  
 
 		foreach($data as $key => $datos){
 			$datas = Ventas_has_productoModel::
-			//select('cantidad*precio_producto as suma')->
 			where('ventas_id',$datos['id'])
-			//->select('cantidad * precio as esssss')
 			->select(DB::raw("(cantidad * precio) as totalPriceQuantity"))
 			->get()
-			->sum('totalPriceQuantity')
-			
-			//->toarray()
-			;
-			//echo $datos['id'];
-			//var_dump($datas);echo '<br>';
-			//echo 
+			->sum('totalPriceQuantity');
 			$data[$key]['suma_total']=$datas;
+
+
+
+			/*
+			$datasa = Ventas_has_productoModel::
+			where('ventas_id',$datos['id'])
+			->select(DB::raw("sum(producto_id) as cantidad_grupo"))
+			->groupby('producto_id')
+			
+			->get();
+			$data[$key]['grupos_productos']=$datasa;
+*/
+
+
 		}	
 
 	}else{

@@ -3,14 +3,14 @@
 
 
 @if(Auth::check())
-<?php  $fondo_vertical=auth()->user()->color_app_vertical; ?>
-<?php  $fondo_horizontal=auth()->user()->color_app_horizontal; ?>
+<?php $fondo_vertical = auth()->user()->color_app_vertical;?>
+<?php $fondo_horizontal = auth()->user()->color_app_horizontal;?>
 @else
-<?php $fondo_vertical='sidebar-text-dark'; ?>
-<?php $fondo_horizontal='header-text-dark'; ?>
+<?php $fondo_vertical = 'sidebar-text-dark';?>
+<?php $fondo_horizontal = 'header-text-dark';?>
 @endif
 
-  
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +35,7 @@
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
     <link href="{{ asset('Architectui/assets/css/main.css') }}" rel="stylesheet">
-    
+
     <style>
     .margin-right-5{
         margin-right: 10px;
@@ -79,7 +79,7 @@
     border-radius: 50%;
     color: white;
     }
-    
+
 
 
     .b-table tbody tr td{
@@ -95,7 +95,7 @@
         padding-top: 0px;
         padding-bottom: 0px;
         margin-top:0px;
-        margin-bottom: 0px; 
+        margin-bottom: 0px;
     }
     .truncate {
         display: block; /* Fallback for non-webkit */
@@ -137,15 +137,15 @@
         padding-top: 0px;
         padding-bottom: 0px;
         margin-left: 0px!important;
-    
+
     }
 
-    
+
 
     </style>
     <!--
     <link rel="stylesheet" href="select2-bootstrap4-theme/dist/select2.css" />
-    
+
     <link rel="stylesheet" href="select2-bootstrap4-theme/dist/select2-bootstrap4.min.css" />
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
@@ -158,7 +158,7 @@
       line-height: .5;
       border-radius: .2rem;
     }
-    
+
 </style>
 <script>
 
@@ -222,11 +222,11 @@
                                     Mi Carrito
                                 </a>
                             </li>
-                       
+
                         <li class="btn-group nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-edit"></i>
-                                Proyecto 
+                                Proyecto
                             </a>
                         </li>
                         @if (Route::has('login'))
@@ -234,13 +234,13 @@
                         <li class="dropdown nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-cog"></i>
-                                configuración 
+                                configuración
                             </a>
                         </li>
 
                             <li class="dropdown nav-item">
 
-                            <a href="{{ route('logout') }}" class="nav-link " 
+                            <a href="{{ route('logout') }}" class="nav-link "
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                             <i class="nav-link-icon fa fa-cog"></i>
@@ -251,7 +251,7 @@
                         </li>
                         @endif
                         @endif
-                       
+
                     </ul>        </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -262,12 +262,12 @@
                                         @if (Auth::check())
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                       
-                                        <?php $foto=auth()->user()->avatar;?>
+
+                                        <?php $foto = auth()->user()->avatar;?>
 
                                             <img width="42" class="rounded-circle" src='{{ asset("perfil_usuario/$foto")}}' alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                       
+
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             <button type="button" tabindex="0" class="dropdown-item">User Account</button>
@@ -285,7 +285,7 @@
                                     @if (Route::has('login'))
                                         @if (Auth::check())
                                             <div class="widget-heading">
-                                            
+
                                             {{auth()->user()->name}}
                                             </div>
                                             <div class="widget-subheading">
@@ -369,7 +369,7 @@
                                                 <div class="widget-subheading">Makes the app footer bottom fixed, always visible!
                                                 </div>
                                             </div>
-                                           
+
 
                                         </div>
                                     </div>
@@ -386,7 +386,7 @@
                                 Restore Default
                             </button>
                         </h3>
-                        
+
                         <div class="p-3">
                             <ul class="list-group">
                                 <li class="list-group-item">
@@ -587,12 +587,12 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
         <div class="app-main">
-            
-            
-            
-             
+
+
+
+
 
                 <div class="app-sidebar sidebar-shadow sidebar-shadow bg-info <?php echo $fondo_vertical; ?> ">
                     <div class="app-header__logo">
@@ -628,13 +628,13 @@
                         <div class="app-sidebar__inner">
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Lista de menu</li>
-                                
 
-                                
+
+
 
                                 <!--
                                 <li>
-                                    <a href="vue-venta_prueba"     
+                                    <a href="vue-venta_prueba"
                                     @click="data_app_url('vue-venta_prueba')"
                                     >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
@@ -645,67 +645,69 @@
                                 <!--
 
                                 <li>
-                                    <a href="Lista_mesa"      
+                                    <a href="Lista_mesa"
                                     @click="data_app_url('Lista_mesa')"
-                                        
+
                                          >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
-                                        Mesa 
+                                        Mesa
                                     </a>
                                 </li>
                                 <li>
                                     <a href="Producto" v-on  @click="data_app_url('Producto')" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
-                                        Producto 2 
+                                        Producto 2
                                     </a>
                                 </li>
                             -->
 
-                                <router-link to="/MisVentas/public/Lista_Mesa">
+
                                 <li>
-                                    <a href="/MisVentas/public/Lista_Mesa">
+                                    <router-link :to="{ name: 'listaMesa'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
-                                            Lista Mesa V
-                                    </a>
+                                            Lista Mesa V2
+                                    </router-link>
                                 </li>
-                                </router-link>
-                                <router-link to="/MisVentas/public/Producto">
                                 <li>
-                                    <a href="/MisVentas/public/Producto">
+                                    <router-link :to="{ name: 'listaproducto'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
-                                            Producto V
-                                    </a>
+                                        Producto Favorito
+                                    </router-link>
                                 </li>
+
+                                <li>
+                                <router-link :to="{ name: 'Producto'}">
+
+                                        <i class="metismenu-icon pe-7s-rocket"></i>
+                                            Producto V2
                                 </router-link>
-                                <router-link to="/MisVentas/public/Ventas">
-                                    <li>
-                                        <a >
+
+                                </li>
+
+                                <li>
+                                    <router-link :to="{ name: 'Ventas'}">
+
                                             <i class="metismenu-icon pe-7s-rocket"></i>
                                                 Ventas
-                                        </a>
-                                    </li>
-                                </router-link>
-                                <router-link to="/MisVentas/public/Facturacion">
-                                    <li>
-                                        <a >
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{ name: 'Facturacion'}">
                                             <i class="metismenu-icon pe-7s-rocket"></i>
-                                            Facturacion
-                                        </a>
-                                    </li>
-                                </router-link>
+                                                Facturacion
+                                    </router-link>
+                                </li>
 
-
-                                
                                 <!--
                                 <router-link to="/MisVentas/public/Ventas">
                                Venta 33
                                 </router-link>
-                               
+
                                 <router-link to="/MisVentas/public/Producto">
                                     /Producto
                                 </router-link>
-                            --> 
-                                
+                            -->
+
                                 <!--
                                 <li>
                                     <a href="{{ action('ProductosController@index') }}">
@@ -719,8 +721,8 @@
                                             Venta
                                         </a>
                                     </li>
-                                
-                                
+
+
                                 <li>
                                     <a href="{{ action('FacturaController@index') }}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
@@ -770,14 +772,14 @@
                                     </a>
                                 </li>
 
-                                
-                                
+
+
                                 @endhasrole
                             </ul>
                         </div>
                     </div>
-                </div>    
-                
+                </div>
+
                 <div class="app-main__outer">
                     <div class="app-main__inner" >
                         <!--
@@ -791,16 +793,16 @@
 <!--
                         <router-view></router-view>
 
-                        
+
 
                             <keep-alive>
                             <component :is="activeComp"></component>
                         </keep-alive>
                         -->
-                        
+
                         @yield('content')
-                        
-                        
+
+
 
 
                     </div>
@@ -814,13 +816,13 @@
                                 'url': 'vue-venta_prueba',
 
                             }
-                           
+
                         });
                     </script>
                 -->
 
 
-                    
+
                     <div class="app-wrapper-footer">
                         <div class="app-footer">
                             <div class="app-footer__inner">
@@ -920,18 +922,18 @@
         "ordering": true,
         "info": true,
         "autoWidth": false
-        
+
     });
   });
 </script>
 <script type="text/javascript">
 //color_menu_vertical
 $('.swatch-holder').on('click', function() {
-var de;   
+var de;
     //alert($('.switch-sidebar-cs-class active'));
     //console.info($('.switch-sidebar-cs-class active'));
     //de = $('.switch-sidebar-cs-class active').data("id");
-    
+
     var clase = $(this).data("class");
     var theme = $(this).data("theme");
 
@@ -985,42 +987,42 @@ $('#hamburger-close').on('click', function() {
 
 });
 
- 
+
 $('.switch-header-cs-class').on('click', function() {
 
     var classes_header = $(this).data('class');
     sessionStorage.setItem('switch_header',classes_header);
-    
+
 
 });
 
 
 
-    $('.input-number-line').on('input', function () { 
+    $('.input-number-line').on('input', function () {
       this.value = this.value.replace(/[^0-9-]/g,'');
     });
-     $('.input-number-guion-abajo').on('input', function () { 
+     $('.input-number-guion-abajo').on('input', function () {
       this.value = this.value.replace(/[^0-9_]/g,'');
     });
-    $('.input-number').on('input', function () { 
+    $('.input-number').on('input', function () {
       this.value = this.value.replace(/[^0-9]/g,'');
     });
-    $('.input-number-coma').on('input', function () { 
+    $('.input-number-coma').on('input', function () {
       this.value = this.value.replace(/[^0-9,]/g,'');
     });
-    $('.input-number-coma-punto').on('input', function () { 
+    $('.input-number-coma-punto').on('input', function () {
       this.value = this.value.replace(/[^0-9.]/g,'');
     });
-     $('.input-number-punto').on('input', function () { 
+     $('.input-number-punto').on('input', function () {
       this.value = this.value.replace(/[^0-9.-]/g,'');
     });
-    $('.input-number-punto-coma').on('input', function () { 
+    $('.input-number-punto-coma').on('input', function () {
       this.value = this.value.replace(/[^0-9.,]/g,'');
     });
-    $('.solo-texto').on('input', function () { 
+    $('.solo-texto').on('input', function () {
       this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ.(),@ _-]/g,'');
     });
-    $('.form-control').on('input', function () { 
+    $('.form-control').on('input', function () {
       this.value = this.value.replace(/[^0-9a-zA-ZñÑáéíóúÁÉÍÓÚ.(),@ _-]/g,'');
     });
 
@@ -1074,7 +1076,7 @@ $('.switch-header-cs-class').on('click', function() {
 </style>
 
 
-<script> 
+<script>
   $(document).ready(function(){
     $("#myTable").DataTable({
         scrollY:        '100%',
@@ -1097,7 +1099,7 @@ $('.switch-header-cs-class').on('click', function() {
                 "next": "Siguiente",
                 "previous": "Anterior"
             }
-        }, 
+        },
     });
   });
 

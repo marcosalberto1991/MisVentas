@@ -30,14 +30,7 @@
                 <div class="card-header">
                     <h3><b>{{ venta.mesa_id_pk.nombre }}</b></h3>
                     <div class="btn-actions-pane-right">
-                        <!--
-             <b-form-group label="">
-                <b-form-radio v-model="ventas.lista_precio_id" name="some-radios" value="1">Option A</b-form-radio>
-                <b-form-radio v-model="ventas.lista_precio_id" name="some-radios" value="2">Option B</b-form-radio>
-              </b-form-group>
-              -->
                         <div role="group" class="btn-group-sm btn-group">
-
                             <button @click="cobra_todo(venta.id)" class="btn btn-focus">Cerrar</button>
                         </div>
                     </div>
@@ -66,23 +59,6 @@
                                             </div>
                                             <Select2 v-if="editar_producto && producto.id == actualiza_id" placeholder="producto" :required="true" v-model="actualiza_producto_id" :options="productos_all" :myOptions="productos_all" />
 
-                                            <!--
-
-                      <vue-single-select
-                        v-if="editar_producto && producto.id == actualiza_id"
-                        v-model="actualiza_producto_id"
-                        name="producto"
-                        placeholder="producto"
-                        you-want-to-select-a-post="ok"
-                        out-of-all-these-posts="makes sense"
-                        :options="productos_all"
-                        a-post-has-an-id="good for search and display"
-                        the-post-has-a-title="make sure to show these"
-                        option-label="nombre"
-                        :required="true"
-                      ></vue-single-select>
-                      -->
-
                                             <div v-else class="widget-content-left flex2">
                                                 <div class="widget-heading">{{ producto.producto_id_pk.nombre }}</div>
                                                 <div class="widget-subheading opacity-7"><span class="precio-color">{{ formatPrice(producto.precio) }}</span> - <span class="color-hora"> {{ producto.created_at.substr(11,18)}}</span>
@@ -97,7 +73,11 @@
                                 <td v-if="editar_producto && producto.id == actualiza_id" class="text-center">
                                     <input type="number" name="cantidad" class="form-control" value="1" required="required" autofocus v-model="actualiza_cantidad">
                                 </td>
-                                <td v-else class="text-center">{{ producto.cantidad }}</td>
+                                <td v-else class="text-center">
+
+                                    <b-form-spinbutton id="demo-sb" v-model="producto.cantidad" v-on:change="editarCatidad(producto)" min="1" max="100"></b-form-spinbutton>
+
+                                </td>
 
                                 <td v-if="editar_producto && producto.id == actualiza_id" class="text-center">
                                     <div v-if="editar_producto && producto.id == actualiza_id">
@@ -121,9 +101,15 @@
                                     <button @click="cancelar_editar_producto()" class="btn btn-danger btn-sm">Cancelar</button>
                                 </td>
                                 <td class="text-center" v-else>
-                                    <button @click="Editar_producto(producto)" class="btn btn-info btn-sm">Editar</button>
-                                    <button @click="duplicar_producto(producto.producto_id_pk.id,venta.id,producto.cantidad,producto.precio )" class="btn btn-success btn-sm">Copia</button>
-                                    <button @click="Eliminar_producto(producto.id)" class="btn btn-danger btn-sm">Eliminar</button>
+                                    <button @click="Editar_producto(producto)" class="btn btn-info btn-sm" title="Editar">
+                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                    </button>
+                                    <button @click="duplicar_producto(producto.producto_id_pk.id,venta.id,producto.cantidad,producto.precio )" class="btn btn-success" title="Duplicar producto">
+                                        <i class="fa fa-clone" aria-hidden="true"></i>
+                                    </button>
+                                    <button @click="Eliminar_producto(producto.id)" class="btn btn-danger" title="Eliminar producto">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -146,24 +132,6 @@
                 <div class="d-block text-center card-footer">
                     <form class="form-inline" action v-on:submit.prevent="newproducto(venta.id)">
                         <div class="col-md-5 mr-sm-6 mb-sm-6  form-group">
-                            <!--          
-              <label for="exampleEmail22" class="mr-sm-6">Pr</label>
--->
-                            <!--
-              <vue-single-select
-                v-model="producto_id"
-                name="producto"
-                placeholder="producto"
-                you-want-to-select-a-post="ok"
-                out-of-all-these-posts="makes sense"
-                :options="productos_all"
-                a-post-has-an-id="good for search and display"
-                the-post-has-a-title="make sure to show these"
-                option-label="nombre"
-                :required="true"
-              >
-              </vue-single-select>
-              -->
 
                             <Select2 @change="buscar_productos()" style="width:100%" placeholder="producto" :required="true" v-model="producto_id" :options="productos_all" :myOptions="productos_all" :settings="{ placeholder: 'Producto', width: '100%' }">
                                 <template slot="selected-option" slot-scope="options">
@@ -180,21 +148,81 @@
                                 </template>
                             </Select2>
 
-                        </div>
+                        </div> 
                         <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
                             <label for="examplePassword22" class="mr-sm-2">$</label>
-                            <input type="text" class="form-control" value="1" min="1" required="required" autofocus v-model="input_producto_precio" style="width: 100px;">
+                            <money class="form-control" v-model="input_producto_precio" v-bind="money"></money>
                         </div>
                         <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
-                            <label for="examplePassword22" class="mr-sm-2">Cantidad</label>
-                            <input type="number" name="cantidad" class="form-control" value="1" min="1" required="required" autofocus v-model="cantidad" style="width: 56px;">
+                            <label for="examplePassword22" class="mr-sm-2">Cant </label>
+                            <b-form-spinbutton id="demo-sb" v-model="cantidad" min="1" max="100"></b-form-spinbutton>
+
                         </div>
-                        <button type=button class="btn-wide btn btn-info" @click="cantidad_max_min(1)">+</button>
-                        <button type=button class="btn-wide btn btn-info" @click="cantidad_max_min(0)">-</button>
                         <button class="btn-wide btn btn-success" style="margin-left: 10px;">Añadir</button>
                     </form>
                 </div>
+                <div>
+                    <b-button v-b-toggle.collapse-4 class="m-1">Grupacion de productos</b-button>
+                    <b-collapse  id="collapse-4">
+                        <span>
+
+
+                  <div class="table-responsive">
+                    
+                    <table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Productos</th>
+                                <th class="text-center">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr v-for="producto in venta.grupo_venta" v-bind:key="producto.producto_id">
+                                <td style="padding-top: 1px;padding-bottom: 1px;">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-3">
+                                                <div class="widget-content-left">
+                                                    <a v-b-modal.modal-1 @click="Edita_producto(producto)">
+                                                        <img width="40" class="rounded-circle" v-bind:src="'intervenir/' + producto.producto_id_pk.imagen">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                  {{producto.producto_id_pk.nombre}}
+                                </td>
+                                <td>
+                                  <div class="widget-heading">{{ producto.cantidad_grupa }}</div>
+                                </td>
+                            </tr></tbody></table></div>
+
+
+
+
+                        </span>
+
+                        <b-card></b-card>
+                    </b-collapse>
+                </div>
+                <div>
+                    <b-button v-b-toggle.collapse-3 class="m-1">Lista Producto</b-button>
+                    <b-collapse visible id="collapse-3">
+                        <span v-for="data in dataForaneoListaProducto" v-bind:key="data.id">
+
+                            <img width="40" class="rounded-circle" v-on:click="selecionar_productos(data.producto_id_pk, venta.id)" v-bind:src="'intervenir/' + data.producto_id_pk.imagen">
+
+                        </span>
+
+                        <b-card></b-card>
+                    </b-collapse>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -227,21 +255,23 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="exampleInputEmail1">Imagen</label>
-                    <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <b-form-file v-model="input_imagen" class="mt-3" plain></b-form-file>
                 </div>
-                <div class="form-group col-12">
-
-                    <button type="submit" class="btn btn-primary">Actualiza</button>
-                </div>
-
+              
             </div>
 
         </form>
-
+      <template #modal-footer="{ }">
+         
+            <b-button size="sm" variant="success" @click="formulario_producto()">
+              Actualizar
+            </b-button>
+        
+    </template>
     </b-modal>
 </div>
 <!--
-  
+
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.min.css">
@@ -252,6 +282,7 @@
 import Vue from "vue";
 import VueSingleSelect from "vue-single-select";
 import Select2 from 'v-select2-component';
+import {Money} from 'v-money'
 
 //import VueToast from "vue-toast-notification";
 //import "vue-toast-notification/dist/index.css"; 
@@ -285,14 +316,24 @@ export default {
       lista_mesa: [],
       input_precio_1:[],
       input_precio_2:[],
-
+      grupa_ventas:[],
       input_nombre_proveedor:[],
       input_nombre:[],
+      input_imagen:[],
       input_precio_1:[],
       input_precio_2:[],
       input_proveedor_id:[],
       input_lista_precio_id:1,
       data_foraneo_proveedor_id:[],
+      dataForaneoListaProducto:[],
+      money: {
+          decimal: ',',
+          thousands: '.',
+          prefix: '$',
+          suffix: '',
+          precision: 0,
+          masked: false
+      },
       lista_precio:[
         {id:1,text:'1'},
         {id:2,text:'2'}
@@ -310,30 +351,34 @@ export default {
     axios.get("mesa/proveedores").then(response => {
       this.data_foraneo_proveedor_id = response.data;
     });
+    axios.get("mesa/listaProducto").then(response => {
+      this.dataForaneoListaProducto = response.data;
+    });
   },
   components: {
     VueSingleSelect,
     VueToastr2,
-    Select2
+    Select2,
+    Money
   },
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    cantidad_max_min(valor_unidad){
-      if(valor_unidad==1){
-        this.cantidad++;
-      }else{
-        this.cantidad--;
+    selecionar_productos(producto,venta_id){
+      if(this.input_lista_precio_id==1){
+        this.input_producto_precio = producto.precio_venta;
       }
-
+      if(this.input_lista_precio_id==2){
+        this.input_producto_precio = producto.precio_venta_2;
+      }
+      this.producto_id=producto.id
     },
     buscar_productos(){
 
       axios.get(`Producto/${this.producto_id}`).then(response => {
           const datas = response.data;
-          //this.fetchArticles();
           if(this.input_lista_precio_id==1){
             this.input_producto_precio = datas.precio_venta;
           }
@@ -344,6 +389,21 @@ export default {
       });
 
     },
+    editarCatidad(producto) {
+      const params = {
+        id: producto.id,
+        producto_id: producto.producto_id,
+        cantidad: producto.cantidad,
+        precio: producto.precio
+      }; 
+
+      axios.put(`ventas_has_producto/${producto.id}`, params)
+        .then(response => {
+          const venta = response.data;
+
+          this.fetchArticles();
+      });
+    },
     fetchArticles(page_url) {
       let vm = this;
       page_url = page_url || "venta/obtener_data";
@@ -351,6 +411,7 @@ export default {
         .then(res => res.json())
         .then(res => {
           this.ventas = res.data;
+        //  this.grupa_ventas= res.data.grupa_ventas
           //vm.makePagination(res.meta, res.links);
         })
         .catch(err => console.log(err));
@@ -377,8 +438,6 @@ export default {
         });
     },
     duplicar_producto(producto_id,venta_id,cantidad,precio){
-      //axios
-        //.post(`ventas_has_producto/duplicar_productos`)
       const params = {
         producto_id: producto_id,
         ventas_id: venta_id,
@@ -393,21 +452,17 @@ export default {
           this.fetchArticles();
         });
     },
+
     Editar_producto(producto) {
       this.editar_producto = true;
 
       this.input_producto_precio = producto.precio;
-      console.info(producto);
-
-      //alert(producto.producto_id_pk.nombre);
       this.actualiza_id = producto.id;
       this.actualiza_producto_id = producto.producto_id_pk.id;
       this.actualiza_cantidad = producto.cantidad;
     },
     lista_mesa_add(mesa_id) {
-      axios
-        .get(`ventas_has_producto/lista_mesa_add/${mesa_id}`)
-        .then(response => {
+      axios.get(`ventas_has_producto/lista_mesa_add/${mesa_id}`).then(response => {
           const venta = response.data;
 
           if (venta.nombre == false) {
@@ -416,16 +471,7 @@ export default {
             this.$toastr.success("mesa creada con exito", "mesa creada");
           }
           this.fetchArticles();
-          //Vue.use(VueToast);
-          /*
-          newFunction().success("mesa creado con exito", {
-            // override the global option
-            position: "top-right",
-            duration: 10000,
-            queue: true
-          });
-          */
-        });
+      });
     },
     post_editar_producto() {
       this.editar_producto = false;
@@ -437,13 +483,12 @@ export default {
         precio: this.input_producto_precio
 
       }; 
-      axios
-        .put(`ventas_has_producto/${this.actualiza_id}`, params)
+      axios.put(`ventas_has_producto/${this.actualiza_id}`, params)
         .then(response => {
           const venta = response.data;
 
           this.fetchArticles();
-        });
+      });
     },
     cancelar_editar_producto() {
       this.editar_producto = false;
@@ -453,7 +498,6 @@ export default {
       axios.get(`Producto/${producto.producto_id}`).then(response => {
             const data = response.data;
             if(!response.data){
-              //this.$toastr.warning("Operacio no exitosa", "Regitro no obtenido");
             }else{
 
               this.input_producto_id = data.id
@@ -470,13 +514,26 @@ export default {
     formulario_producto(){
       const data = {
         nombre_proveedor:this.input_nombre_proveedor,
+        imagen:this.input_imagen,
         nombre:this.input_nombre,
         precio_venta:this.input_precio_1,
         precio_venta_2:this.input_precio_2,
         proveedor_id:this.input_proveedor_id,
 
         };
-      axios.put(`Producto/${this.input_producto_id}`, data).then(response => {
+          const formData = new FormData();
+            formData.append("nombre_proveedor", this.input_nombre_proveedor);
+            formData.append("nombre", this.input_nombre);
+            formData.append("imagen", this.input_imagen);
+            formData.append("precio_venta", this.precio_venta);
+            formData.append("precio_venta_2", this.precio_venta_2);
+            formData.append("proveedor_id", this.input_proveedor_id);
+            
+
+       axios.post(`Producto/update/${this.input_producto_id}`, formData, {
+            headers: {'Content-Type': 'multipart/form-data'
+  }
+        }).then(response => {
         const venta = response.data;
         if(response.data.id){
           this.$toastr.success("Operacio exitosa", "Datos modificados");
@@ -514,9 +571,6 @@ export default {
   }
 };
 
-function newFunction() {
-  return Vue.$toast;
-}
 </script>
 
 <style>
